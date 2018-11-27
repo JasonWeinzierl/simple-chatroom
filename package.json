@@ -1,0 +1,43 @@
+{
+  "name": "simple-chatroom",
+  "version": "1.0.0",
+  "description": "simple cli chatroom with tcp",
+  "main": "bin/cli.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "ora": "^3.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "bin": {
+    "simple-chatroom": "bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonWeinzierl/ChatRoom.git"
+  },
+  "keywords": [
+    "net",
+    "cli",
+    "tcp",
+    "chat",
+    "server",
+    "client"
+  ],
+  "author": "Jason Weinzierl <jawcv5@mail.missouri.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JasonWeinzierl/ChatRoom/issues"
+  },
+  "homepage": "https://github.com/JasonWeinzierl/ChatRoom#readme",
+  "private": true
+}
