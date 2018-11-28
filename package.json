@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JasonWeinzierl/ChatRoom.git"
+    "url": "git+https://github.com/JasonWeinzierl/simple-chatroom.git"
   },
   "keywords": [
     "net",
@@ -36,8 +36,8 @@
   "author": "Jason Weinzierl <jawcv5@mail.missouri.edu>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JasonWeinzierl/ChatRoom/issues"
+    "url": "https://github.com/JasonWeinzierl/simple-chatroom/issues"
   },
-  "homepage": "https://github.com/JasonWeinzierl/ChatRoom#readme",
+  "homepage": "https://github.com/JasonWeinzierl/simple-chatroom#readme",
   "private": true
 }
