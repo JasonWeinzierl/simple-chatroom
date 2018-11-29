@@ -1,14 +1,21 @@
 # simple-chatroom
-A simple cli chat room that includes a client and a server.  Client can login, create a new user, send messages, and logout.  Server manages the chat room, clients, and message distribution.
+A simple cli chat room that includes a client and a server.  Clients can login or create a new user, send messages, see who is logged in, and logout.  Server manages the chat room, clients, and message distribution.  Communication is over TCP using the [net](https://nodejs.org/api/net.html) module of Node.js.
 
 ## Install
+
 `npm i`
 
 ## Run
 
-`node lib/server` from one cli.
+`npm start` to prompt for client or server.
 
-`node lib/client` from another cli.
+`npm start server` from one shell. Stop server with interrupt signal.
+
+`npm start client` from another shell.
+
+## Usage
+
+Client commands: help, login, logout, newuser, who, send [all|UserID], exit
 
 ## Dependencies
 
