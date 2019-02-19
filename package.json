@@ -16,8 +16,9 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
+    "start": "node bin/cli.js",
     "test": "make test",
-    "start": "node bin/cli.js"
+    "lint": "make jshint"
   },
   "bin": {
     "simple-chatroom": "bin/cli.js"
