@@ -17,6 +17,9 @@ A simple cli chat room that includes a client and a server.  Clients can login o
 
 Client commands: help, login, logout, newuser, who, send [all|UserID], exit
 
+Server will create a login file on first run if none exists.
+
 ## Dependencies
 
 * [ora](https://github.com/sindresorhus/ora)
+* [bcrypt](https://github.com/kelektiv/node.bcrypt.js)
