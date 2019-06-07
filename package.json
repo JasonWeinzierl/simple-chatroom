@@ -9,12 +9,12 @@
     "test": "test"
   },
   "dependencies": {
-    "bcrypt": "^3.0.4",
-    "ora": "^3.1.0"
+    "bcrypt": "^3.0.6",
+    "ora": "^3.4.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.0.1"
+    "mocha": "^6.1.4"
   },
   "scripts": {
     "start": "node bin/cli.js",
