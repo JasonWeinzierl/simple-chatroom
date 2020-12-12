@@ -9,7 +9,7 @@
     "test": "test"
   },
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "ora": "^3.4.0"
   },
   "devDependencies": {
