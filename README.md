@@ -1,5 +1,5 @@
 # simple-chatroom
-A simple cli chat room that includes a client and a server.  Clients can login or create a new user, send messages, see who is logged in, and logout.  Server manages the chat room, clients, and message distribution.  Communication is over TCP using the [net](https://nodejs.org/api/net.html) module of Node.js.
+A simple cli chat room (localhost only) that includes a client and a server.  Clients can login or create a new user, send messages, see who is logged in, and logout.  Server manages the chat room, clients, and message distribution.  Communication is over TCP using the [net](https://nodejs.org/api/net.html) module of Node.js.
 
 ## Install
 
