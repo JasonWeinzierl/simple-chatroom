@@ -1,6 +1,6 @@
 {
   "name": "simple-chatroom",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "simple cli chatroom with tcp",
   "main": "bin/cli.js",
   "directories": {
