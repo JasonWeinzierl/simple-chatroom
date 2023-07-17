@@ -88,7 +88,7 @@ export default function startClient() {
     // end client when we can't read stdin any more.
     // usually because of interrupt or EOL signal
     rl.on('close', () => {
-        process.exit();
+        client.end();
     });
 
     // prompt user for first input
