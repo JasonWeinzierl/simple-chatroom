@@ -1,10 +1,8 @@
 /**
  * server functionality to handle client data
  */
-'use strict';
-
-import { appendFile } from 'fs';                // filesystem
-import { compareSync, hashSync } from 'bcrypt'; // encryption library
+import { appendFile } from 'fs';
+import { compareSync, hashSync } from 'bcrypt';
 
 // client request disconnect
 export function exit(spinner, sockets, socket) {

@@ -2,11 +2,9 @@
  * TCP client uses Node.js net module
  * to chat with TCP server over command line
  */
-'use strict';
-
-import { Socket } from 'net';               // TCP
-import { createInterface } from 'readline'; // read stdin
-import ora from 'ora';                      // status spinner
+import { Socket } from 'net';
+import { createInterface } from 'readline';
+import ora from 'ora';
 
 export default function startClient() {
     // spinner for console notifications

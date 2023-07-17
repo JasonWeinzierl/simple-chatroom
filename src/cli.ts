@@ -1,8 +1,6 @@
-#!/usr/local/bin/node
-
 import { createInterface } from 'readline';
-import startServer from '../lib/server.js';
-import startClient from '../lib/client.js';
+import startServer from './server.js';
+import startClient from './client.js';
 
 const [,, ...args] = process.argv;
 
@@ -43,14 +41,14 @@ if (args.length > 0) {
             case 'server':
                 rl.close();
                 console.log('Starting server.  Run `npm start c` in another shell to start a client.');
-                require('../lib/server.js');
+                startServer();
                 break;
             case 'c':
             case 'C':
             case 'client':
                 rl.close();
                 console.log('Starting client.');
-                require('../lib/client.js');
+                startClient();
                 break;
             default:
                 rl.setPrompt('Incorrect input.  (s/c): ');

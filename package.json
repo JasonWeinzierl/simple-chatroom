@@ -26,10 +26,17 @@
     "node": ">=18"
   },
   "bin": {
-    "simple-chatroom": "bin/cli.js"
+    "simple-chatroom": "bin/simple-chatroom"
   },
+  "files": [
+    "bin",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
-    "start": "node bin/cli.js",
+    "build": "tsc",
+    "start": "node lib/cli",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -37,6 +44,9 @@
     "ora": "^6.3.1"
   },
   "devDependencies": {
-    "eslint": "^8.45.0"
+    "@types/bcrypt": "^5.0.0",
+    "@types/node": "^18.16.19",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.6"
   }
 }

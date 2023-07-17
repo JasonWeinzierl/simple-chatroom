@@ -5,11 +5,9 @@
  * All command functionality is server side,
  * leaving the choice of client up to the user
  */
-'use strict';
-
-import { createServer } from 'net';                     // TCP
-import { existsSync, readFile, writeFile } from 'fs';   // filesystem
-import ora from 'ora';                                  // status spinner
+import { createServer } from 'net';
+import { existsSync, readFile, writeFile } from 'fs';
+import ora from 'ora';
 
 import * as server_commands from './server_commands.js';
 
