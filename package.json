@@ -36,6 +36,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "clean": "rimraf lib tsconfig.tsbuildinfo",
     "start": "node lib/cli",
     "lint": "eslint ."
   },
@@ -50,6 +51,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.45.0",
     "eslint-plugin-n": "^16.0.1",
+    "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
   }
 }
