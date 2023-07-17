@@ -43,13 +43,13 @@ export default function startClient() {
     /**
      * error handler
      */
-    client.on('error', err => {
+    client.on('error', (err: NodeJS.ErrnoException) => {
         switch (err.code) {
             case 'ECONNREFUSED':
                 spinner.fail('Server refused connection. The server is probably inactive.');
                 break;
             default:
-                console.log(err);
+                spinner.fail(err.message);
         }
     });
 
