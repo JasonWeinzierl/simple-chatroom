@@ -120,7 +120,7 @@ export function newuser(spinner, sockets, socket, data, logins, socketId: number
     password = hashSync(password, 10);
 
     // save to logins.txt
-    appendFile('logins.txt', `${username}:${password}`, 'utf8', err => {
+    appendFile('logins.txt', `${username}:${password}\n`, 'utf8', err => {
         if (err) {
             spinner.fail(err.message);
             socket.write('Error saving login.  Please contact server admin.');
