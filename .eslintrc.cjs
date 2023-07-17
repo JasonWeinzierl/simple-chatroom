@@ -9,6 +9,10 @@ module.exports = {
         //'plugin:@typescript-eslint/strict-type-checked',
         //'plugin:@typescript-eslint/stylistic-type-checked',
     ],
+    ignorePatterns: [
+        'lib/**',
+        'node_modules/**',
+    ],
     overrides: [
         {
             env: {
