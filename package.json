@@ -1,27 +1,8 @@
 {
   "name": "simple-chatroom",
   "version": "1.8.2",
+  "private": true,
   "description": "simple cli chatroom with tcp",
-  "main": "bin/cli.js",
-  "directories": {
-    "example": "examples",
-    "lib": "lib",
-    "test": "test"
-  },
-  "dependencies": {
-    "bcrypt": "^5.1.0",
-    "ora": "^6.3.1"
-  },
-  "scripts": {
-    "start": "node bin/cli.js"
-  },
-  "bin": {
-    "simple-chatroom": "bin/cli.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JasonWeinzierl/simple-chatroom.git"
-  },
   "keywords": [
     "net",
     "cli",
@@ -30,11 +11,24 @@
     "server",
     "client"
   ],
-  "author": "Jason Weinzierl <jawcv5@mail.missouri.edu>",
-  "license": "MIT",
+  "homepage": "https://github.com/JasonWeinzierl/simple-chatroom#readme",
   "bugs": {
     "url": "https://github.com/JasonWeinzierl/simple-chatroom/issues"
   },
-  "homepage": "https://github.com/JasonWeinzierl/simple-chatroom#readme",
-  "private": true
+  "license": "MIT",
+  "author": "Jason Weinzierl <weinzierljason@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonWeinzierl/simple-chatroom.git"
+  },
+  "bin": {
+    "simple-chatroom": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "ora": "^6.3.1"
+  }
 }
