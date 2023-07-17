@@ -60,7 +60,7 @@ export default function startClient() {
         input: process.stdin,
         output: process.stdout,
         // AUTO COMPLETION
-        completer: line => {
+        completer: (line: string) => {
             const completions = 'help login logout newuser who exit send'.split(' ');
             const hits = completions.filter( c => c.startsWith(line) );
 

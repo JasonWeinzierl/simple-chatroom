@@ -20,13 +20,13 @@ export default function startServer() {
 
     // keep track of sockets
     let counter = 0;
-    const sockets = {};
+    const clients: server_commands.ChatClient[] = [];
     const MAX_CLIENTS = 3;
 
     // connection event handler
     server.on('connection', socket => {
         // enforce MAX_CLIENTS
-        if (Object.keys(sockets).length + 1 > MAX_CLIENTS) {
+        if (clients.length + 1 > MAX_CLIENTS) {
             socket.write('Server is full.  Goodbye.');
             socket.destroy();
             return;
@@ -36,7 +36,11 @@ export default function startServer() {
         const socketId = counter++;
 
         // save connected sockets
-        sockets[socketId] = socket;
+        const client = {
+            id: socketId,
+            socket,
+        };
+        clients.push(client);
 
         // greet new client
         socket.setEncoding('utf8');
@@ -56,28 +60,28 @@ export default function startServer() {
             // execute commands
             switch (command) {
                 case 'exit':
-                    server_commands.exit(spinner, sockets, socket, socketId);
+                    server_commands.exit(spinner, clients, client);
                     break;
                 case 'login':
-                    server_commands.login(spinner, sockets, socket, data, logins, socketId);
+                    server_commands.login(spinner, clients, client, data, logins);
                     break;
                 case 'logout':
-                    server_commands.logout(spinner, sockets, socket, socketId);
+                    server_commands.logout(spinner, clients, client);
                     break;
                 case 'newuser':
-                    server_commands.newuser(spinner, sockets, socket, data, logins, socketId);
+                    server_commands.newuser(spinner, clients, client, data, logins);
                     break;
                 case 'send':
-                    server_commands.send(spinner, sockets, socket, data, socketId);
+                    server_commands.send(spinner, clients, client, data);
                     break;
                 case 'who':
-                    server_commands.who(spinner, sockets, socket, socketId);
+                    server_commands.who(spinner, clients, client);
                     break;
                 case 'whoami':
-                    server_commands.whoami(spinner, socket, socketId);
+                    server_commands.whoami(spinner, client);
                     break;
                 case 'help':
-                    server_commands.help(socket);
+                    server_commands.help(client);
                     break;
                 default:
                     socket.write('Command not understood.');
@@ -90,7 +94,10 @@ export default function startServer() {
 
         // FIN callback
         socket.on('end', () => {
-            delete sockets[socketId];
+            const index = clients.findIndex(item => item.id === socketId);
+            if (index >= 0) {
+                clients.splice(index, 1);
+            }
             spinner.succeed(`Client ${socketId} has disconnected.`);
         });
 
@@ -121,16 +128,18 @@ export default function startServer() {
         }
     });
 
-    function loadLogins(data) {
-        const logins = {};
+    function loadLogins(data: string) {
+        const logins: Record<string, string> = {};
+
+        // match pattern `username:password\n`
+        const parsed = data.match(/\w+:\S+/g);
 
         // make sure the file has useable data
-        if (data.match(/\w+:\S+/g) === null) {
+        if (!parsed) {
             return logins;
         }
 
-        // match pattern `username:password\n`
-        data.match(/\w+:\S+/g).forEach( m => {
+        parsed.forEach( m => {
             // split and store in dictionary
             const [key, value] = m.split(':');
             logins[key] = value;
@@ -142,7 +151,7 @@ export default function startServer() {
     // open login information
 
     spinner.start('Opening login information...');
-    let logins = {};
+    let logins: Record<string, string> = {};
 
     // make sure logins file exists
     if (existsSync('logins.txt')) {
