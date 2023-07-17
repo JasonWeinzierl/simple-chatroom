@@ -54,7 +54,7 @@ export default function startServer() {
             data = data.trim();
 
             // split command out
-            const command = data.indexOf(' ') === -1 ? data : data.substring(0, data.indexOf(' '));
+            const command = !data.includes(' ') ? data : data.substring(0, data.indexOf(' '));
             data = data.substring(data.indexOf(' ') + 1);
 
             // execute commands

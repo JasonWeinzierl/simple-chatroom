@@ -157,8 +157,8 @@ export function newuser(spinner: Ora, clients: Record<number, ChatClient>, clien
 // send message to all or a specific user
 export function send(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string) {
     // isolate intended recipient and message
-    const intended = data.indexOf(' ') === -1 ? data : data.substring(0, data.indexOf(' '));
-    const message = data.indexOf(' ') === -1 ? '' : data.substring(data.indexOf(' ') + 1);
+    const intended = !data.includes(' ') ? data : data.substring(0, data.indexOf(' '));
+    const message = !data.includes(' ') ? '' : data.substring(data.indexOf(' ') + 1);
 
     // check for login
     if (!Object.hasOwn(client, 'uname')) {

@@ -21,7 +21,7 @@ export default function startClient() {
     /**
      * incoming data handler
      */
-    client.on('data', data => {
+    client.on('data', (data: string) => {
         console.log(`> ${data}`);
         //rl.prompt();
     });
