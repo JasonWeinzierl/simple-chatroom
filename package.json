@@ -21,6 +21,10 @@
     "type": "git",
     "url": "git+https://github.com/JasonWeinzierl/simple-chatroom.git"
   },
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "bin": {
     "simple-chatroom": "bin/cli.js"
   },
