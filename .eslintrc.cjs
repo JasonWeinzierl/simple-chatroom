@@ -1,62 +1,58 @@
 module.exports = {
     env: {
-        es2021: true,
         node: true,
     },
-    extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        //'plugin:@typescript-eslint/strict-type-checked',
-        //'plugin:@typescript-eslint/stylistic-type-checked',
-    ],
     ignorePatterns: [
         'lib/**',
         'node_modules/**',
     ],
     overrides: [
         {
-            env: {
-                node: true,
-            },
             files: [
-                '.eslintrc.{js,cjs}',
+                '*.ts',
             ],
+            extends: [
+                'eslint:recommended',
+                'plugin:@typescript-eslint/recommended',
+                //'plugin:@typescript-eslint/strict-type-checked',
+                //'plugin:@typescript-eslint/stylistic-type-checked',
+            ],
+            parser: '@typescript-eslint/parser',
             parserOptions: {
-                sourceType: 'script',
+                ecmaVersion: 'latest',
+                sourceType: 'module',
+                project: [
+                    "./tsconfig.json",
+                ],
             },
-        },
-    ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-    },
-    plugins: [
-        '@typescript-eslint',
-    ],
-    rules: {
-        'indent': [
-            'error',
-            4,
-            {
-                'SwitchCase': 1,
+            plugins: [
+                '@typescript-eslint',
+            ],
+            rules: {
+                'indent': [
+                    'error',
+                    4,
+                    {
+                        'SwitchCase': 1,
+                    },
+                ],
+                'linebreak-style': [
+                    'error',
+                    'unix',
+                ],
+                'quotes': [
+                    'error',
+                    'single',
+                ],
+                'semi': [
+                    'error',
+                    'always',
+                ],
+                'comma-dangle': [
+                    'warn',
+                    'always-multiline',
+                ],
             },
-        ],
-        'linebreak-style': [
-            'error',
-            'unix',
-        ],
-        'quotes': [
-            'error',
-            'single',
-        ],
-        'semi': [
-            'error',
-            'always',
-        ],
-        'comma-dangle': [
-            'warn',
-            'always-multiline',
-        ],
-    },
+        }
+    ],
 };
