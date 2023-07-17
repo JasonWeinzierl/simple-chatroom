@@ -132,7 +132,7 @@ export default function startServer() {
         // match pattern `username:password\n`
         data.match(/\w+:\S+/g).forEach( m => {
             // split and store in dictionary
-            let [key, value] = m.split(':');
+            const [key, value] = m.split(':');
             logins[key] = value;
         });
 
