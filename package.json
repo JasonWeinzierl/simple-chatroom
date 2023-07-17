@@ -29,10 +29,14 @@
     "simple-chatroom": "bin/cli.js"
   },
   "scripts": {
-    "start": "node bin/cli.js"
+    "start": "node bin/cli.js",
+    "lint": "eslint ."
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "ora": "^6.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0"
   }
 }
