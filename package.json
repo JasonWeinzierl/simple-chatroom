@@ -12,14 +12,8 @@
     "bcrypt": "^5.1.0",
     "ora": "^6.3.1"
   },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.2.3"
-  },
   "scripts": {
-    "start": "node bin/cli.js",
-    "test": "make test",
-    "lint": "make jshint"
+    "start": "node bin/cli.js"
   },
   "bin": {
     "simple-chatroom": "bin/cli.js"
