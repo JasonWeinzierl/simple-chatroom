@@ -1,4 +1,5 @@
 module.exports = {
+    root: true,
     env: {
         node: true,
     },
@@ -15,11 +16,10 @@ module.exports = {
                 'eslint:recommended',
                 'plugin:@typescript-eslint/strict-type-checked',
                 'plugin:@typescript-eslint/stylistic-type-checked',
+                'plugin:n/recommended',
             ],
             parser: '@typescript-eslint/parser',
             parserOptions: {
-                ecmaVersion: 'latest',
-                sourceType: 'module',
                 project: [
                     "./tsconfig.json",
                 ],
@@ -51,6 +51,9 @@ module.exports = {
                     'warn',
                     'always-multiline',
                 ],
+
+                // n
+                'n/handle-callback-err': 'error',
             },
         }
     ],
