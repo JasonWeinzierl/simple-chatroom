@@ -111,7 +111,7 @@ export function newuser(spinner: Ora, clients: Record<number, ChatClient>, clien
 
     if (username.length >= 32) {
         client.socket.write('UserID is too long.');
-        spinner.info(`Client ${client.id} failed newuser with long username ${username.substr(0,32)}...`);
+        spinner.info(`Client ${client.id} failed newuser with long username ${username.substring(0, 32)}...`);
         return;
     }
 

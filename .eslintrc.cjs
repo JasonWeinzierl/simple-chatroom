@@ -25,7 +25,7 @@ module.exports = {
                 ],
             },
             plugins: [
-                '@typescript-eslint',
+                'deprecation',
             ],
             rules: {
                 'indent': [
@@ -54,6 +54,9 @@ module.exports = {
 
                 // n
                 'n/handle-callback-err': 'error',
+
+                // deprecation
+                'deprecation/deprecation': 'warn',
             },
         }
     ],
