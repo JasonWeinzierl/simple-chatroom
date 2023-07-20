@@ -32,7 +32,7 @@ export function login(spinner: Ora, clients: Record<number, ChatClient>, client:
     const username = args[0];
     const password = args[1];
 
-    if (Object.hasOwn(client, 'uname')) {
+    if (client.uname) {
         client.socket.write('Already logged in.');
         spinner.info(`User "${client.uname}" attempted relogin with "${username}".`);
         return;
@@ -44,7 +44,7 @@ export function login(spinner: Ora, clients: Record<number, ChatClient>, client:
         return;
     }
 
-    if (!Object.hasOwn(logins, username)) {
+    if (!logins[username]) {
         client.socket.write('Username or password incorrect.');
         spinner.warn(`${username} was provided as incorrect username on Client ${client.id}.`);
         return;
@@ -72,7 +72,7 @@ export function login(spinner: Ora, clients: Record<number, ChatClient>, client:
 
 // client request logout
 export function logout(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient) {
-    if (!Object.hasOwn(client, 'uname')) {
+    if (!client.uname) {
         client.socket.write('You are not logged in. ');
         spinner.info(`Failed logout command from Client ${client.id}.`);
         return;
@@ -103,7 +103,7 @@ export function newuser(spinner: Ora, clients: Record<number, ChatClient>, clien
         return;
     }
 
-    if (Object.hasOwn(client, 'uname')) {
+    if (client.uname) {
         client.socket.write('Already logged in.');
         spinner.info(`User "${client.uname}" attempted newuser.`);
         return;
@@ -161,7 +161,7 @@ export function send(spinner: Ora, clients: Record<number, ChatClient>, client: 
     const message = !data.includes(' ') ? '' : data.substring(data.indexOf(' ') + 1);
 
     // check for login
-    if (!Object.hasOwn(client, 'uname')) {
+    if (!client.uname) {
         client.socket.write('Denied.  Please log in first.\n');
         spinner.warn(`Client ${client.id} attempted to send "${message}" to ${intended} without login.`);
         return;
@@ -180,7 +180,7 @@ export function send(spinner: Ora, clients: Record<number, ChatClient>, client: 
         for (const id in clients) {
             const c = clients[id];
             //if (id != client.id) {
-            if (Object.hasOwn(c, 'uname')) {
+            if (c.uname) {
                 c.socket.write(`${client.uname}: ${message}`);
             }
         }
@@ -190,7 +190,7 @@ export function send(spinner: Ora, clients: Record<number, ChatClient>, client: 
 
     // find intended and write message to them
     let found = false;
-    if (client.uname?.localeCompare(intended) === 0) {
+    if (client.uname.localeCompare(intended) === 0) {
         client.socket.write(`Message from yourself: ${message}`);
         console.log(`${client.uname} (to themself): ${message}`);
         return;
@@ -219,7 +219,7 @@ export function who(spinner: Ora, clients: Record<number, ChatClient>, client: C
     let loggedInUsers = 0;
     for (const id in clients) {
         const c = clients[id];
-        if (Object.hasOwn(c, 'uname')) {
+        if (c.uname) {
             client.socket.write(`${c.uname}\t\tClient ${id}\t${c.socket.remoteAddress}:${c.socket.remotePort}\n`);
             loggedInUsers++;
         }
