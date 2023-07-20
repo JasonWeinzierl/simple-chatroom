@@ -44,6 +44,12 @@ export function login(spinner: Ora, clients: Record<number, ChatClient>, client:
         return;
     }
 
+    if (username === 'all') {
+        client.socket.write('You cannot login with a username containing a disallowed phrase.');
+        spinner.info(`Client ${client.id} attempted login with disallowed username 'all'.`);
+        return;
+    }
+
     if (!logins[username]) {
         client.socket.write('Username or password incorrect.');
         spinner.warn(`${username} was provided as incorrect username on Client ${client.id}.`);
@@ -112,6 +118,12 @@ export function newuser(spinner: Ora, clients: Record<number, ChatClient>, clien
     if (username.length >= 32) {
         client.socket.write('UserID is too long.');
         spinner.info(`Client ${client.id} failed newuser with long username ${username.substring(0, 32)}...`);
+        return;
+    }
+
+    if (username === 'all') {
+        client.socket.write('UserID contains a disallowed phrase.');
+        spinner.info(`Client ${client.id} failed newuser with disallowed username 'all'.`);
         return;
     }
 
