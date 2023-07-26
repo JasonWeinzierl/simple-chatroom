@@ -7,6 +7,11 @@ module.exports = {
         'lib/**',
         'node_modules/**',
     ],
+    settings: {
+        'import/resolver': {
+            'typescript': {},
+        },
+    },
     overrides: [
         {
             files: [
@@ -16,6 +21,8 @@ module.exports = {
                 'eslint:recommended',
                 'plugin:@typescript-eslint/strict-type-checked',
                 'plugin:@typescript-eslint/stylistic-type-checked',
+                'plugin:import/recommended',
+                'plugin:import/typescript',
                 'plugin:n/recommended',
             ],
             parser: '@typescript-eslint/parser',
@@ -50,6 +57,25 @@ module.exports = {
                 'comma-dangle': [
                     'warn',
                     'always-multiline',
+                ],
+                'sort-imports': [ // For sorting members.
+                    'warn',
+                    {
+                        'ignoreCase': true,
+                        'ignoreDeclarationSort': true, // Handled by import/order.
+                    },
+                ],
+                
+                // import
+                'import/order': [ // For sorting declarations.
+                    'warn',
+                    {
+                        'alphabetize': {
+                            'order': 'asc',
+                            'orderImportKind': 'asc',
+                            'caseInsensitive': true,
+                        },
+                    },
                 ],
 
                 // n

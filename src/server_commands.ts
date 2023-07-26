@@ -2,9 +2,9 @@
  * server functionality to handle client data
  */
 import { appendFile } from 'fs';
+import { Socket } from 'net';
 import { compareSync, hashSync } from 'bcrypt';
 import { Ora } from 'ora';
-import { Socket } from 'net';
 
 export interface ChatClient {
     id: number;

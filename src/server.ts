@@ -5,8 +5,8 @@
  * All command functionality is server side,
  * leaving the choice of client up to the user
  */
-import { createServer } from 'net';
 import { existsSync, readFile, writeFile } from 'fs';
+import { createServer } from 'net';
 import ora from 'ora';
 
 import * as server_commands from './server_commands.js';

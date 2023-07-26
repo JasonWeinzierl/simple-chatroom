@@ -1,6 +1,6 @@
 import { createInterface } from 'readline';
-import startServer from './server.js';
 import startClient from './client.js';
+import startServer from './server.js';
 
 const [,, ...args] = process.argv;
 
