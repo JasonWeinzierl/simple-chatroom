@@ -51,11 +51,11 @@ export default function startServer() {
 
         // client data handler
         socket.on('data', (data: string) => {
-            data = data.trim();
+            const trimmedData = data.trim();
 
             // split command out
-            const command = !data.includes(' ') ? data : data.substring(0, data.indexOf(' '));
-            data = data.substring(data.indexOf(' ') + 1);
+            const command = !trimmedData.includes(' ') ? trimmedData : trimmedData.substring(0, trimmedData.indexOf(' '));
+            const args = trimmedData.substring(trimmedData.indexOf(' ') + 1);
 
             // execute commands
             switch (command) {
@@ -63,16 +63,16 @@ export default function startServer() {
                     server_commands.exit(spinner, clients, client);
                     break;
                 case 'login':
-                    server_commands.login(spinner, clients, client, data, logins);
+                    server_commands.login(spinner, clients, client, args, logins);
                     break;
                 case 'logout':
                     server_commands.logout(spinner, clients, client);
                     break;
                 case 'newuser':
-                    server_commands.newuser(spinner, clients, client, data, logins);
+                    server_commands.newuser(spinner, clients, client, args, logins);
                     break;
                 case 'send':
-                    server_commands.send(spinner, clients, client, data);
+                    server_commands.send(spinner, clients, client, args);
                     break;
                 case 'who':
                     server_commands.who(spinner, clients, client);
@@ -85,7 +85,7 @@ export default function startServer() {
                     break;
                 default:
                     socket.write('Command not understood.');
-                    console.log(`Client ${socketId} sent unrecognized command: "${command} ${data}"`);
+                    console.log(`Client ${socketId} sent unrecognized command: "${command} ${args}"`);
                     break;
             }
 

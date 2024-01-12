@@ -1,5 +1,6 @@
 module.exports = {
     root: true,
+    reportUnusedDisableDirectives: true,
     env: {
         node: true,
     },
@@ -33,6 +34,23 @@ module.exports = {
                 ],
             },
             rules: {
+                // general linting
+                'complexity': [
+                    'warn',
+                    15,
+                ],
+                'curly': [
+                    'error',
+                    'all',
+                ],
+                'no-param-reassign': 'error',
+
+                // general formatting
+                'arrow-spacing': 'warn',
+                'comma-dangle': [
+                    'warn',
+                    'always-multiline',
+                ],
                 'indent': [
                     'error',
                     4,
@@ -40,9 +58,16 @@ module.exports = {
                         'SwitchCase': 1,
                     },
                 ],
+                'keyword-spacing': 'warn',
                 'linebreak-style': [
                     'error',
                     'unix',
+                ],
+                'object-property-newline': [
+                    'warn',
+                    {
+                        'allowAllPropertiesOnSameLine': true,
+                    },
                 ],
                 'quotes': [
                     'error',
