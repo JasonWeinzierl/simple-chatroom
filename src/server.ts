@@ -141,7 +141,7 @@ export default function startServer() {
 
         parsed.forEach( m => {
             // split and store in dictionary
-            const [key, value] = m.split(':');
+            const [key, value] = m.split(':') as [string, string];
             logins[key] = value;
         });
 

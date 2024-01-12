@@ -3,14 +3,20 @@
     "rootDir": "./src",
     "outDir": "./lib",
 
-    "target": "es2022",
+    "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
 
     "composite": true,
+    "isolatedModules": true,
     "noEmitOnError": true,
     
     "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
 
     "skipLibCheck": true
   },

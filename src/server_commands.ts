@@ -13,10 +13,9 @@ export interface ChatClient {
 }
 
 // client request disconnect
-export function exit(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient) {
+export function exit(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient) { // TODO: Record is wrong, clients is an array. id !== client.id sometimes!
     spinner.info(`Client ${client.id} sent exit command.`);
-    for (const id in clients) {
-        const c = clients[id];
+    for (const c of Object.values(clients)) {
         if (client.uname) {
             c.socket.write(`${client.uname} logged out.  `);
         }
@@ -50,13 +49,14 @@ export function login(spinner: Ora, clients: Record<number, ChatClient>, client:
         return;
     }
 
-    if (!logins[username]) {
+    const hashedPassword = logins[username];
+    if (!hashedPassword) {
         client.socket.write('Username or password incorrect.');
         spinner.warn(`${username} was provided as incorrect username on Client ${client.id}.`);
         return;
     }
 
-    if (!compareSync(password, logins[username])) {
+    if (!compareSync(password, hashedPassword)) {
         client.socket.write('username or Password incorrect.');
         spinner.warn(`Failed login attempt to ${username} on Client ${client.id}.`);
         return;
@@ -67,8 +67,7 @@ export function login(spinner: Ora, clients: Record<number, ChatClient>, client:
 
     // notify of login
     spinner.succeed(`Logged in user ${client.uname.toString()} on Client ${client.id}`);
-    for (const id in clients) {
-        const c = clients[id];
+    for (const c of Object.values(clients)) {
         c.socket.write(`${client.uname} logged in.`);
     }
 
@@ -84,8 +83,7 @@ export function logout(spinner: Ora, clients: Record<number, ChatClient>, client
         return;
     }
 
-    for (const id in clients) {
-        const c = clients[id];
+    for (const c of Object.values(clients)) {
         c.socket.write(`${client.uname} logged out.`);
     }
 
@@ -101,7 +99,7 @@ export function logout(spinner: Ora, clients: Record<number, ChatClient>, client
 export function newuser(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string, logins: Record<string, string>) {
     const args = data.split(' ');
     const username = args[0];
-    let password = args[1];
+    const password = args[1];
 
     if (!username || !password) {
         client.socket.write('You cannot create a new user with empty information.');
@@ -137,17 +135,17 @@ export function newuser(spinner: Ora, clients: Record<number, ChatClient>, clien
     }
 
     // hash password
-    password = hashSync(password, 10);
+    const hashedPassword = hashSync(password, 10);
 
     // save to logins.txt
-    appendFile('logins.txt', `${username}:${password}\n`, 'utf8', err => {
+    appendFile('logins.txt', `${username}:${hashedPassword}\n`, 'utf8', err => {
         if (err) {
             spinner.fail(err.message);
             client.socket.write('Error saving login.  Please contact server admin.');
             return;
         } else {
             // add to loaded login data
-            logins[username] = password;
+            logins[username] = hashedPassword;
 
             spinner.succeed(`${username} appended to logins.txt`);
         }
@@ -158,8 +156,7 @@ export function newuser(spinner: Ora, clients: Record<number, ChatClient>, clien
 
     // notify of new user and login
     spinner.succeed(`Created and logged in user ${client.uname.toString()} on Client ${client.id}`);
-    for (const id in clients) {
-        const c = clients[id];
+    for (const c of Object.values(clients)) {
         c.socket.write(`${client.uname} logged in with a new account.`);
     }
 
@@ -189,9 +186,7 @@ export function send(spinner: Ora, clients: Record<number, ChatClient>, client: 
     // ALL
     if (intended.localeCompare('all') === 0) {
         // broadcast message to all logged in users
-        for (const id in clients) {
-            const c = clients[id];
-            //if (id != client.id) {
+        for (const c of Object.values(clients)) {
             if (c.uname) {
                 c.socket.write(`${client.uname}: ${message}`);
             }
@@ -207,8 +202,7 @@ export function send(spinner: Ora, clients: Record<number, ChatClient>, client: 
         console.log(`${client.uname} (to themself): ${message}`);
         return;
     } else {
-        for (const id in clients) {
-            const c = clients[id];
+        for (const c of Object.values(clients)) {
             if (c.uname?.localeCompare(intended) === 0) {
                 c.socket.write(`${client.uname} (to you): ${message} `);
                 client.socket.write(`${client.uname} (to ${c.uname}): ${message}`);
@@ -229,10 +223,9 @@ export function who(spinner: Ora, clients: Record<number, ChatClient>, client: C
     spinner.info(`Client ${client.id} sent who command.`);
 
     let loggedInUsers = 0;
-    for (const id in clients) {
-        const c = clients[id];
+    for (const c of Object.values(clients)) {
         if (c.uname) {
-            client.socket.write(`${c.uname}\t\tClient ${id}\t${c.socket.remoteAddress}:${c.socket.remotePort}\n`);
+            client.socket.write(`${c.uname}\t\tClient ${c.id}\t${c.socket.remoteAddress}:${c.socket.remotePort}\n`);
             loggedInUsers++;
         }
     }
