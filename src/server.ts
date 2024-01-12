@@ -9,7 +9,7 @@ import { existsSync, readFile, writeFile } from 'fs';
 import { createServer } from 'net';
 import ora from 'ora';
 
-import * as server_commands from './server_commands.js';
+import * as serverCommands from './serverCommands.js';
 
 export default function startServer() {
     // create spinner to use for console notifications
@@ -20,7 +20,7 @@ export default function startServer() {
 
     // keep track of sockets
     let counter = 0;
-    const clients: server_commands.ChatClient[] = [];
+    const clients: serverCommands.ChatClient[] = [];
     const MAX_CLIENTS = 3;
 
     // connection event handler
@@ -60,28 +60,28 @@ export default function startServer() {
             // execute commands
             switch (command) {
                 case 'exit':
-                    server_commands.exit(spinner, clients, client);
+                    serverCommands.exit(spinner, clients, client);
                     break;
                 case 'login':
-                    server_commands.login(spinner, clients, client, args, logins);
+                    serverCommands.login(spinner, clients, client, args, logins);
                     break;
                 case 'logout':
-                    server_commands.logout(spinner, clients, client);
+                    serverCommands.logout(spinner, clients, client);
                     break;
                 case 'newuser':
-                    server_commands.newuser(spinner, clients, client, args, logins);
+                    serverCommands.newuser(spinner, clients, client, args, logins);
                     break;
                 case 'send':
-                    server_commands.send(spinner, clients, client, args);
+                    serverCommands.send(spinner, clients, client, args);
                     break;
                 case 'who':
-                    server_commands.who(spinner, clients, client);
+                    serverCommands.who(spinner, clients, client);
                     break;
                 case 'whoami':
-                    server_commands.whoami(spinner, client);
+                    serverCommands.whoami(spinner, client);
                     break;
                 case 'help':
-                    server_commands.help(client);
+                    serverCommands.help(client);
                     break;
                 default:
                     socket.write('Command not understood.');

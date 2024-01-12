@@ -77,10 +77,8 @@ module.exports = {
                     'error',
                     'always',
                 ],
-                'comma-dangle': [
-                    'warn',
-                    'always-multiline',
-                ],
+
+                // import
                 'sort-imports': [ // For sorting members.
                     'warn',
                     {
@@ -88,8 +86,6 @@ module.exports = {
                         'ignoreDeclarationSort': true, // Handled by import/order.
                     },
                 ],
-                
-                // import
                 'import/order': [ // For sorting declarations.
                     'warn',
                     {
@@ -104,6 +100,22 @@ module.exports = {
                 // n
                 'n/handle-callback-err': 'error',
 
+                // typescript
+                '@typescript-eslint/array-type': [
+                    'warn',
+                    {
+                        'default': 'array-simple',
+                    },
+                ],
+                '@typescript-eslint/naming-convention': 'error',
+                '@typescript-eslint/prefer-readonly': 'warn',
+                '@typescript-eslint/promise-function-async': 'error',
+                '@typescript-eslint/unbound-method': [
+                    'error',
+                    {
+                        'ignoreStatic': true,
+                    },
+                ],
             },
         }
     ],
