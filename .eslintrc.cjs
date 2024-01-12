@@ -21,6 +21,7 @@ module.exports = {
                 'eslint:recommended',
                 'plugin:@typescript-eslint/strict-type-checked',
                 'plugin:@typescript-eslint/stylistic-type-checked',
+                'plugin:deprecation/recommended',
                 'plugin:import/recommended',
                 'plugin:import/typescript',
                 'plugin:n/recommended',
@@ -31,9 +32,6 @@ module.exports = {
                     "./tsconfig.json",
                 ],
             },
-            plugins: [
-                'deprecation',
-            ],
             rules: {
                 'indent': [
                     'error',
@@ -81,8 +79,6 @@ module.exports = {
                 // n
                 'n/handle-callback-err': 'error',
 
-                // deprecation
-                'deprecation/deprecation': 'warn',
             },
         }
     ],
