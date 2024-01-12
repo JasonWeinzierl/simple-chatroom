@@ -1,6 +1,6 @@
 {
   "name": "simple-chatroom",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "private": true,
   "description": "simple cli chatroom with tcp",
   "keywords": [
