@@ -107,6 +107,12 @@ module.exports = {
                         'default': 'array-simple',
                     },
                 ],
+                '@typescript-eslint/explicit-function-return-type': [
+                    'error',
+                    {
+                        'allowExpressions': true,
+                    },
+                ],
                 '@typescript-eslint/naming-convention': 'error',
                 '@typescript-eslint/prefer-readonly': 'warn',
                 '@typescript-eslint/promise-function-async': 'error',

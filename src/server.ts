@@ -11,7 +11,7 @@ import ora from 'ora';
 
 import * as serverCommands from './serverCommands.js';
 
-export default function startServer() {
+export default function startServer(): void {
     // create spinner to use for console notifications
     const spinner = ora().start('Setting up server...');
 
@@ -128,7 +128,7 @@ export default function startServer() {
         }
     });
 
-    function loadLogins(data: string) {
+    function loadLogins(data: string): Record<string, string> {
         const logins: Record<string, string> = {};
 
         // match pattern `username:password\n`

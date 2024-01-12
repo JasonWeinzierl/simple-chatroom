@@ -13,7 +13,7 @@ export interface ChatClient {
 }
 
 // client request disconnect
-export function exit(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient) { // TODO: Record is wrong, clients is an array. id !== client.id sometimes!
+export function exit(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient): void { // TODO: Record is wrong, clients is an array. id !== client.id sometimes!
     spinner.info(`Client ${client.id} sent exit command.`);
     for (const c of Object.values(clients)) {
         if (client.uname) {
@@ -26,7 +26,7 @@ export function exit(spinner: Ora, clients: Record<number, ChatClient>, client: 
 }
 
 // validate and do client login
-export function login(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string, logins: Record<string, string>) {
+export function login(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string, logins: Record<string, string>): void {
     const args = data.split(' ');
     const username = args[0];
     const password = args[1];
@@ -76,7 +76,7 @@ export function login(spinner: Ora, clients: Record<number, ChatClient>, client:
 }
 
 // client request logout
-export function logout(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient) {
+export function logout(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient): void {
     if (!client.uname) {
         client.socket.write('You are not logged in. ');
         spinner.info(`Failed logout command from Client ${client.id}.`);
@@ -96,7 +96,7 @@ export function logout(spinner: Ora, clients: Record<number, ChatClient>, client
 }
 
 // client creates new user and login
-export function newuser(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string, logins: Record<string, string>) {
+export function newuser(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string, logins: Record<string, string>): void {
     const args = data.split(' ');
     const username = args[0];
     const password = args[1];
@@ -164,7 +164,7 @@ export function newuser(spinner: Ora, clients: Record<number, ChatClient>, clien
 }
 
 // send message to all or a specific user
-export function send(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string) {
+export function send(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient, data: string): void {
     // isolate intended recipient and message
     const intended = !data.includes(' ') ? data : data.substring(0, data.indexOf(' '));
     const message = !data.includes(' ') ? '' : data.substring(data.indexOf(' ') + 1);
@@ -219,7 +219,7 @@ export function send(spinner: Ora, clients: Record<number, ChatClient>, client: 
 }
 
 // display all logged in users
-export function who(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient) {
+export function who(spinner: Ora, clients: Record<number, ChatClient>, client: ChatClient): void {
     spinner.info(`Client ${client.id} sent who command.`);
 
     let loggedInUsers = 0;
@@ -234,7 +234,7 @@ export function who(spinner: Ora, clients: Record<number, ChatClient>, client: C
 }
 
 // display client id or logged in username
-export function whoami(spinner: Ora, client: ChatClient) {
+export function whoami(spinner: Ora, client: ChatClient): void {
     spinner.info(`Client ${client.id} sent whoami command.`);
 
     if (client.uname) {
@@ -247,7 +247,7 @@ export function whoami(spinner: Ora, client: ChatClient) {
 }
 
 // help list of commands
-export function help(client: ChatClient) {
+export function help(client: ChatClient): void {
     client.socket.write(`
             Command list:
             help - this message

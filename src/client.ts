@@ -6,7 +6,7 @@ import { Socket } from 'net';
 import { createInterface } from 'readline';
 import ora from 'ora';
 
-export default function startClient() {
+export default function startClient(): void {
     // spinner for console notifications
     const spinner = ora().start('Connecting...');
 
