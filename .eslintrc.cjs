@@ -122,6 +122,8 @@ module.exports = {
                         'ignoreStatic': true,
                     },
                 ],
+                // TODO: re-enable, was introduced to recommended config in ts-eslint v7
+                "@typescript-eslint/restrict-template-expressions": "off",
             },
         }
     ],
