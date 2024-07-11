@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node: [ 18, 20 ]
+        node: [ 18, 20, 22 ]
 
     name: Node.js ${{ matrix.node }}
     runs-on: ubuntu-latest
