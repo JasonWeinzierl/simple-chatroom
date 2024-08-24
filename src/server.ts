@@ -1,3 +1,9 @@
+import { existsSync, readFile, writeFile } from 'fs';
+import { createServer } from 'net';
+import ora from 'ora';
+
+import * as serverCommands from './serverCommands.js';
+
 /**
  * TCP chat server uses Node.js net module
  * delivers messages, executes commands
@@ -5,12 +11,6 @@
  * All command functionality is server side,
  * leaving the choice of client up to the user
  */
-import { existsSync, readFile, writeFile } from 'fs';
-import { createServer } from 'net';
-import ora from 'ora';
-
-import * as serverCommands from './serverCommands.js';
-
 export default function startServer(): void {
     // create spinner to use for console notifications
     const spinner = ora().start('Setting up server...');

@@ -1,6 +1,3 @@
-/**
- * server functionality to handle client data
- */
 import { appendFile } from 'fs';
 import { Socket } from 'net';
 import { compareSync, hashSync } from 'bcrypt';
@@ -12,7 +9,9 @@ export interface ChatClient {
     uname?: string;
 }
 
-// client request disconnect
+/**
+ * Client request disconnect
+ */
 export function exit(spinner: Ora, clients: ChatClient[], client: ChatClient): void {
     spinner.info(`Client ${client.id} sent exit command.`);
     for (const c of clients) {
@@ -25,7 +24,9 @@ export function exit(spinner: Ora, clients: ChatClient[], client: ChatClient): v
     return;
 }
 
-// validate and do client login
+/**
+ * Validate and do client login
+ */
 export function login(spinner: Ora, clients: ChatClient[], client: ChatClient, data: string, logins: Record<string, string>): void {
     const args = data.split(' ');
     const username = args[0];
@@ -74,7 +75,9 @@ export function login(spinner: Ora, clients: ChatClient[], client: ChatClient, d
     return;
 }
 
-// client request logout
+/**
+ * Client request logout
+ */
 export function logout(spinner: Ora, clients: ChatClient[], client: ChatClient): void {
     if (!client.uname) {
         client.socket.write('You are not logged in. ');
@@ -94,7 +97,9 @@ export function logout(spinner: Ora, clients: ChatClient[], client: ChatClient):
     return;
 }
 
-// client creates new user and login
+/**
+ * Client creates new user and login
+ */
 export function newuser(spinner: Ora, clients: ChatClient[], client: ChatClient, data: string, logins: Record<string, string>): void {
     const args = data.split(' ');
     const username = args[0];
@@ -162,7 +167,9 @@ export function newuser(spinner: Ora, clients: ChatClient[], client: ChatClient,
     return;
 }
 
-// send message to all or a specific user
+/**
+ * Send message to all or a specific user
+ */
 export function send(spinner: Ora, clients: ChatClient[], client: ChatClient, data: string): void {
     // isolate intended recipient and message
     const intended = !data.includes(' ') ? data : data.substring(0, data.indexOf(' '));
@@ -217,7 +224,9 @@ export function send(spinner: Ora, clients: ChatClient[], client: ChatClient, da
     return;
 }
 
-// display all logged in users
+/**
+ * Display all logged in users
+ */
 export function who(spinner: Ora, clients: ChatClient[], client: ChatClient): void {
     spinner.info(`Client ${client.id} sent who command.`);
 
@@ -232,7 +241,9 @@ export function who(spinner: Ora, clients: ChatClient[], client: ChatClient): vo
     return;
 }
 
-// display client id or logged in username
+/**
+ * Display client id or logged in username
+ */
 export function whoami(spinner: Ora, client: ChatClient): void {
     spinner.info(`Client ${client.id} sent whoami command.`);
 
@@ -245,7 +256,9 @@ export function whoami(spinner: Ora, client: ChatClient): void {
     return;
 }
 
-// help list of commands
+/**
+ * Help list of commands
+ */
 export function help(client: ChatClient): void {
     client.socket.write(`
             Command list:

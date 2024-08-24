@@ -1,11 +1,11 @@
-/**
- * TCP client uses Node.js net module
- * to chat with TCP server over command line
- */
 import { Socket } from 'net';
 import { createInterface } from 'readline';
 import ora from 'ora';
 
+/**
+ * TCP client uses Node.js net module
+ * to chat with TCP server over command line
+ */
 export default function startClient(): void {
     // spinner for console notifications
     const spinner = ora().start('Connecting...');
