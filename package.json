@@ -47,15 +47,15 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    "@types/node": "^18.19.39",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
+    "@types/node": "^18.19.45",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^3.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^17.9.0",
-    "rimraf": "^5.0.5",
-    "typescript": "~5.5.3"
+    "eslint-plugin-n": "^17.10.2",
+    "rimraf": "^5.0.10",
+    "typescript": "~5.5.4"
   }
 }
