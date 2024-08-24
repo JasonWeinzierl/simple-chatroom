@@ -1,59 +1,51 @@
+import { program } from '@commander-js/extra-typings';
 import { createInterface } from 'readline';
 import startClient from './client.js';
 import startServer from './server.js';
 
-const [,, ...args] = process.argv;
+program
+    .name('simple-chatroom')
+    .description('simple cli chat room in Node.js');
 
-// handle command line args
-if (args.length > 0) {
-    switch (args[0]) {
-        case 's':
-        case 'S':
-        case 'server':
-            console.log('Starting server.  Run `npm start c` in another shell to start a client.');
-            startServer();
-            break;
-        case 'c':
-        case 'C':
-        case 'client':
-            console.log('Starting client.');
-            startClient();
-            break;
-        default:
-            console.log('Incorrect command line argument');
-            break;
-    }
-} else {
-    // get input from terminal
-    const rl = createInterface({
-        input: process.stdin,
-        output: process.stdout,
+program.command('server')
+    .alias('s')
+    .alias('S')
+    .description('start server')
+    .allowUnknownOption()
+    .action(() => {
+        console.log('Starting server.  Run `npm start c` in another shell to start a client.');
+        startServer();
     });
 
-    rl.setPrompt('Would you like to start server or client? (s/c): ');
+program.command('client')
+    .alias('c')
+    .alias('C')
+    .description('start client')
+    .allowUnknownOption()
+    .action(() => {
+        console.log('Starting client.');
+        startClient();
+    });
 
-    rl.prompt();
-
-    rl.on('line', line => {
-        switch (line) {
-            case 's':
-            case 'S':
-            case 'server':
-                rl.close();
-                console.log('Starting server.  Run `npm start c` in another shell to start a client.');
-                startServer();
-                break;
-            case 'c':
-            case 'C':
-            case 'client':
-                rl.close();
-                console.log('Starting client.');
-                startClient();
-                break;
-            default:
-                rl.setPrompt('Incorrect input.  (s/c): ');
-                rl.prompt();
-                break;
+program.command('interactive', { isDefault: true, hidden: true })
+    .argument('[args...]')
+    .option('--from-interactive')
+    .action((args, opts) => {
+        if (args.length && !opts.fromInteractive) {
+            program.help({ error: true });
         }
+
+        const rl = createInterface({
+            input: process.stdin,
+            output: process.stdout,
+        });
+
+        const question = opts.fromInteractive ? 'Incorrect input. (s/c): ' : 'Would you like to start server or client? (s/c): ';
+
+        rl.question(question, line => {
+            rl.close();
+            program.parse([line, '--from-interactive'], { from: 'user' });
+        });
     });
-}
+
+program.parse();

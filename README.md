@@ -35,3 +35,4 @@ Server will create a login file on first run if none exists.
 
 * [ora](https://github.com/sindresorhus/ora)
 * [bcrypt](https://github.com/kelektiv/node.bcrypt.js)
+* [commander](https://github.com/tj/commander.js)
