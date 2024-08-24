@@ -72,7 +72,6 @@ export function login(spinner: Ora, clients: ChatClient[], client: ChatClient, d
     }
 
     return;
-
 }
 
 // client request logout
@@ -90,7 +89,7 @@ export function logout(spinner: Ora, clients: ChatClient[], client: ChatClient):
     spinner.succeed(`${client.uname} logged out from Client ${client.id}`);
     delete client.uname;
 
-    //socket.end();
+    // socket.end();
 
     return;
 }

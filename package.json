@@ -39,23 +39,23 @@
     "build": "tsc",
     "clean": "rimraf lib tsconfig.tsbuildinfo",
     "start": "node lib/cli",
-    "lint": "eslint ."
+    "lint": "eslint"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "ora": "^8.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "@stylistic/eslint-plugin": "^2.6.4",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^18.19.45",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-deprecation": "^3.0.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint": "^9.9.1",
+    "eslint-config-flat-gitignore": "^0.1.8",
     "eslint-plugin-n": "^17.10.2",
+    "globals": "^15.9.0",
     "rimraf": "^5.0.10",
-    "typescript": "~5.5.4"
+    "typescript": "~5.5.4",
+    "typescript-eslint": "^8.2.0"
   }
 }

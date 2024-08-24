@@ -12,7 +12,7 @@ export default function startClient(): void {
 
     // open socket, connect to localhost
     const client = new Socket();
-    client.connect(10119, 'localhost', function() {
+    client.connect(10119, 'localhost', function () {
         spinner.succeed('Connected to localhost:10119.');
         console.log(`Client: ${client.localAddress}:${client.localPort}`);
         console.log(`Server: ${client.remoteAddress}:${client.remotePort}`);
@@ -23,7 +23,7 @@ export default function startClient(): void {
      */
     client.on('data', (data: string) => {
         console.log(`> ${data}`);
-        //rl.prompt();
+        // rl.prompt();
     });
 
     /**
@@ -62,7 +62,7 @@ export default function startClient(): void {
         // AUTO COMPLETION
         completer: (line: string) => {
             const completions = 'help login logout newuser who exit send'.split(' ');
-            const hits = completions.filter( c => c.startsWith(line) );
+            const hits = completions.filter(c => c.startsWith(line));
 
             return [hits.length ? hits : completions, line];
         },
@@ -82,7 +82,7 @@ export default function startClient(): void {
             spinner.stop();
         });
 
-        //rl.prompt();
+        // rl.prompt();
     });
 
     // end client when we can't read stdin any more.
@@ -92,5 +92,5 @@ export default function startClient(): void {
     });
 
     // prompt user for first input
-    //rl.prompt();
+    // rl.prompt();
 }
