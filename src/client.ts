@@ -8,7 +8,9 @@ import ora from 'ora';
  */
 export default function startClient(): void {
     // spinner for console notifications
-    const spinner = ora().start('Connecting...');
+    const spinner = ora({
+        discardStdin: false, // Must be false to prevent conflicts with node:readline (sindresorhus/ora#209).
+    }).start('Connecting...');
 
     // open socket, connect to localhost
     const client = new Socket();
