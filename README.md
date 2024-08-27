@@ -1,5 +1,7 @@
 # simple-chatroom
 
+This was my first project in Node.js.  I maintain it only for nostalgia.
+
 A simple cli chat room (localhost only) that includes a client and a server.
 Clients can login or create a new user, send messages, see who is logged in, and logout.
 Server manages the chat room, clients, and message distribution.
