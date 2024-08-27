@@ -7,7 +7,6 @@ import gloabls from 'globals';
 import tseslint from 'typescript-eslint';
 
 // TODO: re-add these plugins when they support ESLint v9
-// - deprecation
 // - import-x
 
 export default tseslint.config(gitignore(), {
