@@ -16,7 +16,10 @@
     "url": "https://github.com/JasonWeinzierl/simple-chatroom/issues"
   },
   "license": "MIT",
-  "author": "Jason Weinzierl <weinzierljason@gmail.com>",
+  "author": {
+    "name": "Jason Weinzierl",
+    "url": "https://jasonweinzierl.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JasonWeinzierl/simple-chatroom.git"
