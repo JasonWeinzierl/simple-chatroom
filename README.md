@@ -9,6 +9,10 @@ Communication is over TCP using the [net](https://nodejs.org/api/net.html) modul
 
 ## Install
 
+`npm install -g corepack`
+
+`corepack enable npm`
+
 `npm install`
 
 ## Build
