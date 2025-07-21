@@ -41,7 +41,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rimraf lib tsconfig.tsbuildinfo",
-    "start": "node lib/cli",
+    "start": "node lib/main",
     "lint": "eslint"
   },
   "dependencies": {
