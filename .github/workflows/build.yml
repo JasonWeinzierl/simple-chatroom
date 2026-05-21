@@ -7,6 +7,9 @@ on:
       - main
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 jobs:
   build:
     strategy:
@@ -25,6 +28,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
+          package-manager-cache: false
       - run: pnpm ci
       - run: pnpm run lint
       - run: pnpm run build
